@@ -1,0 +1,431 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!--bootstrap sdn for close poup-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          title="Bootstrap">
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+
+<!--this section is everything regarding close popup-->
+<!--this section is everything regarding close popup-->
+
+<section id="" class="popup">
+    <div id="bio_epp" class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12  img-sec paddingZero ">
+            <img src="https://cdn.shopify.com/s/files/1/2417/3997/files/Poster---Portrait---Line.jpg?7789378454046984369"
+                 alt="">
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12 exit-content ">
+            <form action="https://www.getdrip.com/forms/170461530/submissions" method="post"
+                  data-drip-embedded-form="170461530">
+                <h3 class="exit-heading">US$100 GIFT CARD</h3>
+                <div class="exit-des">Join BirthCanvas Family and win <br>
+                    <b>$100 Gift Card!</b>
+                </div>
+                <div>
+                    <input class="exit-name-input" type="text" placeholder="First Name" id="drip-first-name"
+                           name="fields[first_name]" value=""/>
+                </div>
+                <div>
+                    <input class="exit-email-input" type="email" id="drip-email" placeholder="Email Address"
+                           name="fields[email]" value=""/>
+                </div>
+                <div>
+                    <input class="exit-signup-btn" type="submit" value="SIGN UP"/>
+                </div>
+                <div style="padding-left: 10px;font-size: 11px;padding-top: 5px;"><input type='checkbox'
+                                                                                         required="required"> I agree
+                    with <a target="_blank" href='/pages/terms-of-service-refund-policy'
+                            style='color: #337ab7;text-decoration: underline;'>terms and conditions</a></div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        /*popup style*/
+        @media only screen and (max-width: 600px) {
+            .img-sec {
+                height: 45% !important;
+            }
+
+            #bio_epp {
+                height: 560px !important;
+                width: 350px !important;
+                left: 53% !important;
+            }
+
+            .exit-des {
+                padding-top: 0px !important;
+                padding-bottom: 0px !important;
+            }
+
+            .exit-signup-btn {
+                height: 45px !important;
+                margin-top: 12px !important;
+            }
+
+        }
+
+        .paddingZero {
+            padding: 0px;
+        }
+
+        .img-sec {
+            height: 100%;
+            border-radius: 5px 0px 0px 5px;
+            overflow: hidden;
+        }
+
+        .exit-content {
+            border-radius: 5px 0px 0px 5px;
+            overflow: hidden;
+        }
+
+        .img-sec img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .exit-heading {
+            text-align: center;
+            font-size: 24px;
+            color: black;
+            padding-top: 20px;
+        }
+
+        .exit-des {
+            padding-top: 15px;
+            text-align: center;
+            color: black;
+            font-size: 16px;
+            padding-bottom: 10px;
+        }
+
+        .exit-name-input, .exit-email-input {
+            padding-left: 10px;
+            margin-top: 10px;
+            border: solid 1.5px black;
+            margin-left: 2%;
+            width: 95%;
+            height: 50px;
+        }
+
+        .exit-signup-btn {
+            margin-top: 20px;
+            margin-left: 12.5%;
+            width: 75%;
+            height: 55px;
+            color: white;
+            background-color: black;
+            border: none;
+        }
+    </style>
+    <script type="text/javascript">
+        window.bioEp = {
+            // Private variables
+            bgEl: {},
+            popupEl: {},
+            closeBtnEl: {},
+            shown: false,
+            overflowDefault: "visible",
+            transformDefault: "",
+            // Popup options
+            width: 400,
+            height: 220,
+            html: "",
+            css: "",
+            fonts: [],
+            delay: 5,
+            showOnDelay: true,
+            cookieExp: 30,
+            showOncePerSession: false,
+            onPopup: null,
+            // Object for handling cookies, taken from QuirksMode
+            // http://www.quirksmode.org/js/cookies.html
+            cookieManager: {
+                // Create a cookie
+                create: function (name, value, days, sessionOnly) {
+                    var expires = "";
+                    if (sessionOnly)
+                        expires = "; expires=0"
+                    else if (days) {
+                        var date = new Date();
+                        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                        expires = "; expires=" + date.toGMTString();
+                    }
+                    document.cookie = name + "=" + value + expires + "; path=/";
+                },
+                // Get the value of a cookie
+                get: function (name) {
+                    var nameEQ = name + "=";
+                    var ca = document.cookie.split(";");
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == " ") c = c.substring(1, c.length);
+                        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                    }
+                    return null;
+                },
+                // Delete a cookie
+                erase: function (name) {
+                    this.create(name, "", -1);
+                }
+            },
+            // Handle the bioep_shown cookie
+            // If present and true, return true
+            // If not present or false, create and return false
+            checkCookie: function () {
+                // Handle cookie reset
+                if (this.cookieExp <= 0) {
+                    // Handle showing pop up once per browser session.
+                    if (this.showOncePerSession && this.cookieManager.get("bioep_shown_session") == "true")
+                        return true;
+                    this.cookieManager.erase("bioep_shown");
+                    return false;
+                }
+                // If cookie is set to true
+                if (this.cookieManager.get("bioep_shown") == "true")
+                    return true;
+                return false;
+            },
+            // Add font stylesheets and CSS for the popup
+            addCSS: function () {
+                // Add font stylesheets
+                for (var i = 0; i < this.fonts.length; i++) {
+                    var font = document.createElement("link");
+                    font.href = this.fonts[i];
+                    font.type = "text/css";
+                    font.rel = "stylesheet";
+                    document.head.appendChild(font);
+                }
+                // Base CSS styles for the popup
+                var css = document.createTextNode(
+                    "#bio_ep_bg {display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; opacity: 0.7; z-index: 1000001;}" +
+                    "#bio_epp {display: none; position: fixed; width: " + this.width + "px; height: " + this.height + "px; font-family: 'Titillium Web', sans-serif; font-size: 16px; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%) !important; -webkit-transform: translateX(-50%) translateY(-50%); -ms-transform: translateX(-50%) translateY(-50%); background-color: #fff; box-shadow: 0px 1px 4px 0 rgba(0,0,0,0.5);z-index: 1000002;border-radius: 5px;}" +
+                    "#bio_ep_close {position: absolute; left: 100%; margin: -8px 0 0 -12px; width: 20px; height: 20px; color: #fff; font-size: 12px; font-weight: bold; text-align: center; border-radius: 50%; background-color: #5c5c5c; cursor: pointer;z-index:9;}" +
+                    this.css
+                );
+                // Create the style element
+                var style = document.createElement("style");
+                style.type = "text/css";
+                style.appendChild(css);
+                // Insert it before other existing style
+                // elements so user CSS isn't overwritten
+                // document.head.insertBefore(style, document.getElementsByTagName("style")[0]);
+                document.getElementsByTagName('head')[0].appendChild(style);
+            },
+            // Add the popup to the page
+            addPopup: function () {
+                // Add the background div
+                this.bgEl = document.createElement("div");
+                this.bgEl.id = "bio_ep_bg";
+                document.body.appendChild(this.bgEl);
+                // Add the popup
+                if (document.getElementById("bio_epp"))
+                    this.popupEl = document.getElementById("bio_epp");
+                else {
+                    this.popupEl = document.createElement("div");
+                    this.popupEl.id = "bio_epp";
+                    this.popupEl.innerHTML = this.html;
+                    document.body.appendChild(this.popupEl);
+                }
+                // Add the close button
+                if (document.getElementById("bio_ep_close"))
+                    this.closeBtnEl = document.getElementById("bio_ep_close");
+                else {
+                    this.closeBtnEl = document.createElement("div");
+                    this.closeBtnEl.id = "bio_ep_close";
+                    this.closeBtnEl.appendChild(document.createTextNode("X"));
+                    this.popupEl.insertBefore(this.closeBtnEl, this.popupEl.firstChild);
+                }
+            },
+            // Show the popup
+            showPopup: function () {
+                if (this.shown) return;
+                this.bgEl.style.display = "block";
+                this.popupEl.style.display = "block";
+                // Handle scaling
+                this.scalePopup();
+                // Save body overflow value and hide scrollbars
+                this.overflowDefault = document.body.style.overflow;
+                document.body.style.overflow = "hidden";
+                this.shown = true;
+                this.cookieManager.create("bioep_shown", "true", this.cookieExp, false);
+                this.cookieManager.create("bioep_shown_session", "true", 0, true);
+                if (typeof this.onPopup === "function") {
+                    this.onPopup();
+                }
+            },
+            // Hide the popup
+            hidePopup: function () {
+                this.bgEl.style.display = "none";
+                this.popupEl.style.display = "none";
+                // Set body overflow back to default to show scrollbars
+                document.body.style.overflow = this.overflowDefault;
+            },
+            // Handle scaling the popup
+            scalePopup: function () {
+                var margins = {width: 40, height: 40};
+                var popupSize = {width: bioEp.popupEl.offsetWidth, height: bioEp.popupEl.offsetHeight};
+                var windowSize = {width: window.innerWidth, height: window.innerHeight};
+                var newSize = {width: 0, height: 0};
+                var aspectRatio = popupSize.width / popupSize.height;
+                // First go by width, if the popup is larger than the window, scale it
+                if (popupSize.width > (windowSize.width - margins.width)) {
+                    newSize.width = windowSize.width - margins.width;
+                    newSize.height = newSize.width / aspectRatio;
+                    // If the height is still too big, scale again
+                    if (newSize.height > (windowSize.height - margins.height)) {
+                        newSize.height = windowSize.height - margins.height;
+                        newSize.width = newSize.height * aspectRatio;
+                    }
+                }
+                // If width is fine, check for height
+                if (newSize.height === 0) {
+                    if (popupSize.height > (windowSize.height - margins.height)) {
+                        newSize.height = windowSize.height - margins.height;
+                        newSize.width = newSize.height * aspectRatio;
+                    }
+                }
+                // Set the scale amount
+                var scaleTo = newSize.width / popupSize.width;
+                // If the scale ratio is 0 or is going to enlarge (over 1) set it to 1
+                if (scaleTo <= 0 || scaleTo > 1) scaleTo = 1;
+                // Save current transform style
+                if (this.transformDefault === "")
+                    this.transformDefault = window.getComputedStyle(this.popupEl, null).getPropertyValue("transform");
+                // Apply the scale transformation
+                this.popupEl.style.transform = this.transformDefault + " scale(" + scaleTo + ")";
+            },
+            // Event listener initialisation for all browsers
+            addEvent: function (obj, event, callback) {
+                if (obj.addEventListener)
+                    obj.addEventListener(event, callback, false);
+                else if (obj.attachEvent)
+                    obj.attachEvent("on" + event, callback);
+            },
+            // Load event listeners for the popup
+            loadEvents: function () {
+                // Track mouseout event on document
+                this.addEvent(document, "mouseout", function (e) {
+                    e = e ? e : window.event;
+                    // If this is an autocomplete element.
+                    if (e.target.tagName.toLowerCase() == "input")
+                        return;
+                    // Get the current viewport width.
+                    var vpWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+                    // If the current mouse X position is within 50px of the right edge
+                    // of the viewport, return.
+                    if (e.clientX >= (vpWidth - 50))
+                        return;
+                    // If the current mouse Y position is not within 50px of the top
+                    // edge of the viewport, return.
+                    if (e.clientY >= 50)
+                        return;
+                    // Reliable, works on mouse exiting window and
+                    // user switching active program
+                    var from = e.relatedTarget || e.toElement;
+                    if (!from)
+                        bioEp.showPopup();
+                }.bind(this));
+                // Handle the popup close button
+                this.addEvent(this.closeBtnEl, "click", function () {
+                    bioEp.hidePopup();
+                });
+                // Handle window resizing
+                this.addEvent(window, "resize", function () {
+                    bioEp.scalePopup();
+                });
+            },
+            // Set user defined options for the popup
+            setOptions: function (opts) {
+                this.width = (typeof opts.width === 'undefined') ? this.width : opts.width;
+                this.height = (typeof opts.height === 'undefined') ? this.height : opts.height;
+                this.html = (typeof opts.html === 'undefined') ? this.html : opts.html;
+                this.css = (typeof opts.css === 'undefined') ? this.css : opts.css;
+                this.fonts = (typeof opts.fonts === 'undefined') ? this.fonts : opts.fonts;
+                this.delay = (typeof opts.delay === 'undefined') ? this.delay : opts.delay;
+                this.showOnDelay = (typeof opts.showOnDelay === 'undefined') ? this.showOnDelay : opts.showOnDelay;
+                this.cookieExp = (typeof opts.cookieExp === 'undefined') ? this.cookieExp : opts.cookieExp;
+                this.showOncePerSession = (typeof opts.showOncePerSession === 'undefined') ? this.showOncePerSession : opts.showOncePerSession;
+                this.onPopup = (typeof opts.onPopup === 'undefined') ? this.onPopup : opts.onPopup;
+            },
+            // Ensure the DOM has loaded
+            domReady: function (callback) {
+                (document.readyState === "interactive" || document.readyState === "complete") ? callback() : this.addEvent(document, "DOMContentLoaded", callback);
+            },
+            // Initialize
+            init: function (opts) {
+                // Handle options
+                if (typeof opts !== 'undefined')
+                    this.setOptions(opts);
+                // Add CSS here to make sure user HTML is hidden regardless of cookie
+                this.addCSS();
+                // Once the DOM has fully loaded
+                this.domReady(function () {
+                    // Handle the cookie
+                    if (bioEp.checkCookie()) return;
+                    // Add the popup
+                    bioEp.addPopup();
+                    // Load events
+                    setTimeout(function () {
+                        bioEp.loadEvents();
+                        if (bioEp.showOnDelay)
+                            bioEp.showPopup();
+                    }, bioEp.delay * 1000);
+                });
+            }
+        }
+        bioEp.init({
+            width: 750,
+            height: 373,
+            delay: 5,
+            cookieExp: 0
+        });
+    </script>
+</section>
+
+<script src="js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+    window.ga = function () {
+        ga.q.push(arguments)
+    };
+    ga.q = [];
+    ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
+</html>
